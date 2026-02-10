@@ -9,6 +9,7 @@ const App = () => {
     const [persons, setPersons] = useState([])
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
+    const [newPlace, setNewPlace] = useState('')
     const [filter, setFilter] = useState('')
     const [notification, setNotification] = useState({ message: null, type: null })
 
@@ -52,7 +53,8 @@ const App = () => {
         } else {
             const personObject = {
                 name: newName,
-                number: newNumber
+                number: newNumber,
+                place: newPlace
             }
 
             personService
@@ -61,6 +63,7 @@ const App = () => {
                     setPersons(persons.concat(returnedPerson))
                     setNewName('')
                     setNewNumber('')
+                    setNewPlace('')
                     //showNotification(`Added ${returnedPerson.name}`, 'success')
                 })
                 .catch(error => {
@@ -94,6 +97,10 @@ const App = () => {
         setNewNumber(event.target.value)
     }
 
+    const handlePlaceChange = (event) => {
+        setNewPlace(event.target.value)
+    }
+
     const handleFilterChange = (event) => {
         setFilter(event.target.value)
     }
@@ -117,6 +124,8 @@ const App = () => {
                 handleNameChange={handleNameChange}
                 newNumber={newNumber}
                 handleNumberChange={handleNumberChange}
+                newPlace={newPlace}
+                handlePlaceChange={handlePlaceChange}
             />
 
             <h3>Numbers</h3>
